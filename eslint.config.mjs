@@ -43,6 +43,10 @@ const config = typescriptEslint.config(
         callees: ["classnames", "clsx", "ctl", "cn", "cva"],
       },
 
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx"],
+      },
+
       "import/resolver": {
         typescript: true,
         node: true,
