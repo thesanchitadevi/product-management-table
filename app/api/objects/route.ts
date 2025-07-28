@@ -1,8 +1,6 @@
-type ApiResponse = {
-  data?: unknown[]
-}
+import { TProduct } from "@/types/product"
 
-export async function getObjects() {
+export async function getObjects(): Promise<TProduct[]> {
   try {
     // Fetch data using rest api
     const res = await fetch("https://api.restful-api.dev/objects", {
@@ -17,11 +15,11 @@ export async function getObjects() {
       throw new Error(`HTTP error! status: ${res.status}`)
     }
 
-    const response = (await res.json()) as ApiResponse
+    const response = (await res.json()) as TProduct[]
 
-    return response.data || response || []
+    return response || []
   } catch (error) {
     console.error("Error in GET handler:", error)
-    return new Response("Internal Server Error", { status: 500 })
+    return []
   }
 }

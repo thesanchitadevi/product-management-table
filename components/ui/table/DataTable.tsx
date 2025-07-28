@@ -16,25 +16,15 @@ import React, { useState } from "react"
 import { TablePagination } from "./TablePagination"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"
 import { Button } from "../button"
-import { Input } from "../input"
 
 interface ITableData<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   pageSize?: number
   className?: string
-  header?: React.ReactNode
-  footer?: React.ReactNode
 }
 
-export function DataTable<TData, TValue>({
-  data,
-  columns,
-  pageSize = 10,
-  className = "",
-  header,
-  footer,
-}: ITableData<TData, TValue>) {
+export function DataTable<TData, TValue>({ data, columns, pageSize = 10, className = "" }: ITableData<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
@@ -60,26 +50,6 @@ export function DataTable<TData, TValue>({
 
   return (
     <main className={`flex flex-col space-y-4 ${className}`}>
-      {/* Header */}
-      {header && <div>{header}</div>}
-
-      {/* Filters */}
-      <div className="flex items-center justify-between gap-4 py-4">
-        <div className="flex items-center gap-4">
-          {/* Name Filter */}
-          <Input
-            placeholder="Filter names..."
-            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
-            className="max-w-sm"
-          />
-        </div>
-
-        {/* Clear All Filters Button */}
-        <Button variant="outline" onClick={() => table.resetColumnFilters()} className="ml-auto">
-          Clear Filters
-        </Button>
-      </div>
       {/* Table Start */}
       <div className={`rounded-md border ${className}`}>
         <Table>
@@ -128,8 +98,6 @@ export function DataTable<TData, TValue>({
         <TablePagination table={table} className="border-t p-4" />
       </div>
       {/* Table End */}
-      {/* Footer */}
-      {footer && <div>{footer}</div>}
     </main>
   )
 }
