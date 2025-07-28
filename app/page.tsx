@@ -1,41 +1,10 @@
 import { Metadata } from "next"
-import { tableColumns } from "components/modules/table/column"
-import { DataTable } from "components/modules/table/DataTable"
+import ProductList from "@/components/modules/Product/ProductList"
 import { getObjects } from "./api/objects/route"
 
 export const metadata: Metadata = {
   title: "Table",
 }
-
-const sampleProducts = [
-  {
-    id: "1",
-    name: "Laptop",
-    price: 999.99,
-    data: {
-      color: "Silver",
-      capacity: "512GB SSD",
-    },
-  },
-  {
-    id: "2",
-    name: "Smartphone",
-    price: 699.99,
-    data: {
-      color: "Black",
-      capacity: "256GB",
-    },
-  },
-  {
-    id: "3",
-    name: "Desk Chair",
-    price: 199.99,
-    data: {
-      color: "Brown",
-      capacity: "Standard",
-    },
-  },
-]
 
 export default async function Home() {
   // Get Data
@@ -52,9 +21,7 @@ export default async function Home() {
             </h1>
           </div>
         </div>
-        <div className="mx-auto max-w-7xl px-4 py-8">
-          <DataTable columns={tableColumns} data={sampleProducts} />
-        </div>
+        <ProductList />
       </section>
     </>
   )

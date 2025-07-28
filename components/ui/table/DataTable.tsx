@@ -1,20 +1,32 @@
 "use client"
 
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
-
+import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table"
+import { TablePagination } from "./TablePagination"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  pageSize?: number
   className?: string
 }
 
-export function DataTable<TData, TValue>({ columns, data, className = "" }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+  pageSize = 10,
+  className = "",
+}: DataTableProps<TData, TValue>) {
   const table = useReactTable<TData>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+        pageSize,
+      },
+    },
   })
 
   return (
@@ -47,6 +59,8 @@ export function DataTable<TData, TValue>({ columns, data, className = "" }: Data
           )}
         </TableBody>
       </Table>
+
+      <TablePagination table={table} className="border-t p-4" />
     </div>
   )
 }
