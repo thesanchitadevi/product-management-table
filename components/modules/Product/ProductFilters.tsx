@@ -24,7 +24,7 @@ export function ProductFilters({
   ).sort()
 
   // dynamic min-max price
-  const minPrice = Math.min(...products.map((product) => product.data?.price || 0).filter((price) => price >= 0))
+
   const maxPrice = Math.max(...products.map((product) => product.data?.price || 0).filter((price) => price > 0))
 
   // Apply filters
@@ -76,16 +76,14 @@ export function ProductFilters({
         {/* Price Slider  */}
         <div className="min-w-[200px] flex-1">
           <div className="flex items-center gap-3">
-            <span className="text-sm whitespace-nowrap">Min: ${minPrice}</span>
+            <span className="text-sm whitespace-nowrap">Max: ${price}</span>
             <Slider
-              min={minPrice}
               max={maxPrice}
-              step={10}
+              step={1000}
               value={[price]}
               onValueChange={([val]) => setPrice(val ?? 0)}
               className="flex-1"
             />
-            <span className="text-sm whitespace-nowrap">Max: ${price}</span>
           </div>
         </div>
 

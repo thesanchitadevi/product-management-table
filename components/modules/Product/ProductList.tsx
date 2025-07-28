@@ -1,6 +1,7 @@
 "use client"
 
 import { Plus } from "lucide-react"
+import Link from "next/link"
 import React, { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { tableColumns } from "@/components/ui/table/column/column"
@@ -25,10 +26,12 @@ const ProductList = ({ products, error }: { products: TProduct[]; error?: string
         title="Product Table"
         description="Manage your products here"
         actions={
-          <Button size="sm">
-            <Plus className="h-4 w-4" />
-            Add Product
-          </Button>
+          <Link href="/add-product" className="flex items-center space-x-2">
+            <Button size="sm">
+              <Plus className="h-4 w-4" />
+              Add Product
+            </Button>
+          </Link>
         }
       />
       <div>
