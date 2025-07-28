@@ -1,4 +1,4 @@
-type ProductData = {
+type TProductData = {
   Color?: string | null
   Capacity?: string | null
   price?: number | null
@@ -15,5 +15,5 @@ type ProductData = {
 export type TProduct = {
   id: string
   name: string
-  data: ProductData | null
+  data: TProductData | null
 }

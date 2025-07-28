@@ -1,7 +1,6 @@
-// Helper for table data handling
-
 import { TProduct } from "@/types/product"
 
+// Helper for table data handling
 export const ProductHelper = <K extends keyof NonNullable<TProduct["data"]>>(
   product: TProduct,
   key: K, // key of product data

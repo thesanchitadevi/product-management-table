@@ -4,12 +4,12 @@ import { Table } from "@tanstack/react-table"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-interface TablePaginationProps<TData> {
+interface ITablePagination<TData> {
   table: Table<TData>
   className?: string
 }
 
-export function TablePagination<TData>({ table, className = "" }: TablePaginationProps<TData>) {
+export function TablePagination<TData>({ table, className = "" }: ITablePagination<TData>) {
   return (
     <section className={`flex items-center justify-between ${className}`}>
       <div className="text-muted-foreground text-sm">
