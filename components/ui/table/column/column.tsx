@@ -1,5 +1,6 @@
 "use client"
 import { ColumnDef } from "@tanstack/react-table"
+import { ProductActions } from "@/components/modules/Product/ProductActions"
 import { TProduct } from "@/types/product"
 import { ProductHelper } from "@/utils/data-helper"
 
@@ -69,5 +70,9 @@ export const tableColumns: ColumnDef<TProduct>[] = [
     accessorKey: "data.Hard disk size",
     header: "Hard Disk Size",
     cell: ({ row }) => ProductHelper(row.original, "Hard disk size", "-"),
+  },
+  {
+    header: "Actions",
+    cell: ({ row }) => <ProductActions product={row.original} />,
   },
 ]
