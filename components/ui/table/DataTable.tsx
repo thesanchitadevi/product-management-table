@@ -18,8 +18,8 @@ export function DataTable<TData, TValue>({
   className = "",
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable<TData>({
-    data,
     columns,
+    data,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {

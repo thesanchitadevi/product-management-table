@@ -1,13 +1,13 @@
 import React from "react"
-import { sampleProducts } from "@/app/data"
 import { tableColumns } from "@/components/ui/table/column/column"
 import { DataTable } from "@/components/ui/table/DataTable"
+import { TProduct } from "@/types/product"
 
-const ProductList = () => {
+const ProductList = ({ data }: { data: TProduct[] }) => {
   return (
-    <>
-      <DataTable columns={tableColumns} data={sampleProducts} pageSize={10} />
-    </>
+    <main className="container mx-auto p-4">
+      <DataTable columns={tableColumns} data={data} pageSize={10} />
+    </main>
   )
 }
 

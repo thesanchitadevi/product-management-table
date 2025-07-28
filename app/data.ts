@@ -2,7 +2,6 @@ export const sampleProducts = [
   {
     id: "1",
     name: "Laptop",
-    price: 999.99,
     data: {
       color: "Silver",
       capacity: "512GB SSD",
@@ -15,7 +14,7 @@ export const sampleProducts = [
   {
     id: "2",
     name: "Smartphone",
-    price: 699.99,
+
     data: {
       color: null,
       capacity: "256GB",
@@ -27,7 +26,7 @@ export const sampleProducts = [
   {
     id: "3",
     name: "Desk Chair",
-    price: 199.99,
+
     data: {
       color: "Brown",
       capacity: null,
@@ -38,7 +37,7 @@ export const sampleProducts = [
   {
     id: "4",
     name: "Monitor",
-    price: 249.99,
+
     data: {
       color: "Black",
       "Screen size": "27-inch",
@@ -49,14 +48,14 @@ export const sampleProducts = [
   {
     id: "5",
     name: "Keyboard",
-    price: 89.99,
+
     data: null,
   },
   {
     id: "6",
     name: "Mouse",
-    price: 49.99,
     data: {
+      price: 49.99,
       color: null,
       capacity: "Wireless",
       brand: "Razer",
@@ -66,8 +65,8 @@ export const sampleProducts = [
   {
     id: "7",
     name: "Headphones",
-    price: 129.99,
     data: {
+      price: 129.99,
       color: "Blue",
       capacity: null,
       brand: "Sony",
@@ -77,8 +76,8 @@ export const sampleProducts = [
   {
     id: "8",
     name: "Tablet",
-    price: 329.99,
     data: {
+      price: 329.99,
       color: "Space Gray",
       capacity: "128GB",
       brand: null,
@@ -88,7 +87,7 @@ export const sampleProducts = [
   {
     id: "9",
     name: "Smart Watch",
-    price: 199.99,
+
     data: {
       color: "Midnight",
       capacity: null,
@@ -99,7 +98,7 @@ export const sampleProducts = [
   {
     id: "10",
     name: "Printer",
-    price: 149.99,
+
     data: {
       color: "White",
       capacity: "All-in-One",
@@ -110,29 +109,29 @@ export const sampleProducts = [
   {
     id: "11",
     name: "External SSD",
-    price: 119.99,
+
     data: {
       color: "Silver",
       capacity: "1TB",
-      brand: null,
+
       "Hard disk size": "1TB",
     },
   },
   {
     id: "12",
     name: "Webcam",
-    price: 79.99,
+
     data: {
       color: "Black",
       capacity: null,
-      brand: "Logitech",
+
       "Screen size": "1080p",
     },
   },
   {
     id: "13",
     name: "Microphone",
-    price: 99.99,
+
     data: {
       color: null,
       capacity: "Cardioid",
@@ -143,8 +142,8 @@ export const sampleProducts = [
   {
     id: "14",
     name: "Router",
-    price: 89.99,
     data: {
+      price: 89.99,
       color: "Black",
       capacity: "Wi-Fi 6",
       brand: "TP-Link",
@@ -154,8 +153,8 @@ export const sampleProducts = [
   {
     id: "15",
     name: "Power Bank",
-    price: 39.99,
     data: {
+      price: 39.99,
       color: "Red",
       capacity: "10000mAh",
       brand: null,
@@ -165,7 +164,7 @@ export const sampleProducts = [
   {
     id: "16",
     name: "USB Hub",
-    price: 29.99,
+
     data: {
       color: "Gray",
       capacity: null,
@@ -176,7 +175,7 @@ export const sampleProducts = [
   {
     id: "17",
     name: "Desk Lamp",
-    price: 59.99,
+
     data: {
       color: "White",
       capacity: "Adjustable",
@@ -187,7 +186,7 @@ export const sampleProducts = [
   {
     id: "18",
     name: "Backpack",
-    price: 49.99,
+
     data: {
       color: "Black",
       capacity: null,
@@ -198,18 +197,18 @@ export const sampleProducts = [
   {
     id: "19",
     name: "Notebook",
-    price: 9.99,
+
     data: {
       color: "Yellow",
       capacity: "College Ruled",
-      brand: null,
+
       Generation: null,
     },
   },
   {
     id: "20",
     name: "Pen",
-    price: 2.99,
+
     data: {
       color: "Blue",
       capacity: null,
@@ -220,7 +219,7 @@ export const sampleProducts = [
   {
     id: "21",
     name: "Stapler",
-    price: 12.99,
+
     data: {
       color: "Black",
       capacity: "Standard",
@@ -231,7 +230,7 @@ export const sampleProducts = [
   {
     id: "22",
     name: "Paper Shredder",
-    price: 69.99,
+
     data: {
       color: "White",
       capacity: null,
@@ -242,7 +241,7 @@ export const sampleProducts = [
   {
     id: "23",
     name: "Calculator",
-    price: 19.99,
+
     data: {
       color: "Silver",
       capacity: "Scientific",
@@ -253,7 +252,7 @@ export const sampleProducts = [
   {
     id: "24",
     name: "Whiteboard",
-    price: 39.99,
+
     data: {
       color: "White",
       capacity: null,
@@ -264,7 +263,7 @@ export const sampleProducts = [
   {
     id: "25",
     name: "Sticky Notes",
-    price: 4.99,
+
     data: {
       color: "Yellow",
       capacity: "3x3 inches",

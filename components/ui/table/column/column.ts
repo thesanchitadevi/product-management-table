@@ -1,23 +1,7 @@
 "use client"
 import { ColumnDef } from "@tanstack/react-table"
-
-export type TProduct = {
-  id: string
-  name: string
-  data: {
-    Color?: string
-    Capacity?: string
-    price?: number
-    Generation?: string
-    generation?: string
-    Description?: string
-    "Screen size"?: string
-    "Strap Colour"?: string
-    "Case Size"?: string
-    "CPU model"?: string
-    "Hard disk size"?: string
-  } | null
-}
+import { TProduct } from "@/types/product"
+import { ProductHelper } from "@/utils/data-helper"
 
 export const tableColumns: ColumnDef<TProduct>[] = [
   {
@@ -31,51 +15,59 @@ export const tableColumns: ColumnDef<TProduct>[] = [
   {
     accessorKey: "data.price",
     header: "Price",
-    cell: ({ row }) => `$${row.original.data.price?.toFixed(2)}` || "N/A",
+    cell: ({ row }) => {
+      const price = ProductHelper(row.original, "price", "0")
+      return price !== "N/A" ? `$${parseFloat(price).toFixed(2)}` : "-"
+    },
   },
   {
     accessorKey: "data.Color",
     header: "Color",
-    cell: ({ row }) => row.original.data.Color || "N/A",
+    cell: ({ row }) => ProductHelper(row.original, "Color", "-"),
   },
   {
     accessorKey: "data.Capacity",
     header: "Capacity",
-    cell: ({ row }) => row.original.data.Capacity || "N/A",
+    cell: ({ row }) => ProductHelper(row.original, "Capacity", "-"),
   },
   {
     accessorKey: "data.Generation",
     header: "Generation",
-    cell: ({ row }) => row.original.data.Generation || row.original.data.generation || "N/A",
+    cell: ({ row }) => {
+      // Try both "Generation" and "generation" keys
+      const generation = ProductHelper(row.original, "Generation", "-")
+      if (generation !== "-") return generation
+      return ProductHelper(row.original, "generation", "-")
+    },
   },
   {
     accessorKey: "data.Description",
     header: "Description",
-    cell: ({ row }) => row.original.data.Description || "N/A",
+    cell: ({ row }) => ProductHelper(row.original, "Description", "-"),
   },
   {
     accessorKey: "data.Screen size",
     header: "Screen Size",
-    cell: ({ row }) => row.original.data["Screen size"] || "N/A",
+    cell: ({ row }) => ProductHelper(row.original, "Screen size", "-"),
   },
   {
     accessorKey: "data.Strap Colour",
     header: "Strap Color",
-    cell: ({ row }) => row.original.data["Strap Colour"] || "N/A",
+    cell: ({ row }) => ProductHelper(row.original, "Strap Colour", "-"),
   },
   {
     accessorKey: "data.Case Size",
     header: "Case Size",
-    cell: ({ row }) => row.original.data["Case Size"] || "N/A",
+    cell: ({ row }) => ProductHelper(row.original, "Case Size", "-"),
   },
   {
     accessorKey: "data.CPU model",
     header: "CPU Model",
-    cell: ({ row }) => row.original.data["CPU model"] || "N/A",
+    cell: ({ row }) => ProductHelper(row.original, "CPU model", "-"),
   },
   {
     accessorKey: "data.Hard disk size",
     header: "Hard Disk Size",
-    cell: ({ row }) => row.original.data["Hard disk size"] || "N/A",
+    cell: ({ row }) => ProductHelper(row.original, "Hard disk size", "-"),
   },
 ]

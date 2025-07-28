@@ -21,7 +21,7 @@ export default async function Home() {
             </h1>
           </div>
         </div>
-        <ProductList />
+        <ProductList data={data} />
       </section>
     </>
   )
