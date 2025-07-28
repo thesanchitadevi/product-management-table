@@ -1,3 +1,5 @@
+"use client"
+
 import { Plus } from "lucide-react"
 import React from "react"
 import { Button } from "@/components/ui/button"
@@ -8,12 +10,12 @@ import { TProduct } from "@/types/product"
 
 const ProductList = ({ data }: { data: TProduct[] }) => {
   return (
-    <main className="container mx-auto p-4">
+    <main className="container mx-auto space-y-6 p-4">
+      {/* Data Table Section */}
       <DataTable
         columns={tableColumns}
         data={data}
         pageSize={10}
-        /*  Header */
         header={
           <DataTableHeader
             title="Product Table"

@@ -17,3 +17,8 @@ export type TProduct = {
   name: string
   data: TProductData | null
 }
+
+export type TProductFilters = {
+  name?: string
+  data?: TProductData
+}
