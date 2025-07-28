@@ -79,7 +79,7 @@ export function ProductFilters({
             <span className="text-sm whitespace-nowrap">Max: ${price}</span>
             <Slider
               max={maxPrice}
-              step={1000}
+              step={10}
               value={[price]}
               onValueChange={([val]) => setPrice(val ?? 0)}
               className="flex-1"
