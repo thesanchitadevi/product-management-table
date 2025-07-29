@@ -11,10 +11,18 @@ import {
   getSortedRowModel,
   SortingState,
   useReactTable,
+  VisibilityState,
 } from "@tanstack/react-table"
-import { ArrowUpDown } from "lucide-react"
+import { ArrowUpDown, ChevronDown, Eye } from "lucide-react"
 import React, { useState } from "react"
 import { TablePagination } from "./TablePagination"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "../../ui/dropdown-menu"
+import { Input } from "../../ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"
 import { Button } from "../button"
 import { LoadingSpinner } from "../loading/loading"
@@ -25,6 +33,9 @@ interface ITableData<TData, TValue> {
   pageSize?: number
   className?: string
   isLoading?: boolean
+  showColumnToggle?: boolean
+  showSearch?: boolean
+  searchPlaceholder?: string
 }
 
 export function DataTable<TData, TValue>({
@@ -33,9 +44,12 @@ export function DataTable<TData, TValue>({
   pageSize = 10,
   className = "",
   isLoading = false,
+  showColumnToggle = true,
 }: ITableData<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+  const [globalFilter, setGlobalFilter] = useState("")
 
   const table = useReactTable<TData>({
     columns,
@@ -43,9 +57,13 @@ export function DataTable<TData, TValue>({
     state: {
       sorting,
       columnFilters,
+      columnVisibility,
+      globalFilter,
     },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -55,7 +73,6 @@ export function DataTable<TData, TValue>({
         pageSize,
       },
     },
-
     getRowId: (row: any) => {
       return row.id ? String(row.id) : `fallback-${Math.random().toString(36).substr(2, 9)}`
     },
@@ -64,13 +81,45 @@ export function DataTable<TData, TValue>({
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div>Loading...</div>
+        <LoadingSpinner />
       </div>
     )
   }
 
   return (
     <main className={`flex flex-col space-y-4 ${className}`}>
+      {/* Table Controls */}
+      <div className="flex items-center justify-between">
+        {showColumnToggle && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                <Eye className="mr-2 h-4 w-4" />
+                Columns
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  )
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+      </div>
+
       {/* Table Start */}
       <div className={`rounded-md border ${className}`}>
         <Table>

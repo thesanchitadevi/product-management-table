@@ -6,10 +6,10 @@ import { ProductHelper } from "@/utils/data-helper"
 import { EditableCell } from "./editCell"
 
 export const tableColumns: ColumnDef<TProduct>[] = [
-  // {
-  //   accessorKey: "id",
-  //   header: "ID",
-  // },
+  {
+    accessorKey: "id",
+    header: "ID",
+  },
   {
     accessorKey: "name",
     header: "Name",

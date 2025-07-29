@@ -1,6 +1,6 @@
 "use client"
 
-import { Trash2 } from "lucide-react"
+import { Eye, Pen, Trash2 } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 import { DeleteConfirmModal } from "@/components/modals/DeleteConfirmModal"
@@ -11,6 +11,7 @@ import { TProduct } from "@/types/product"
 export function ProductActions({ product }: { product: TProduct }) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false)
 
   const handleDelete = async () => {
     setIsDeleting(true)
@@ -31,7 +32,17 @@ export function ProductActions({ product }: { product: TProduct }) {
   }
 
   return (
-    <>
+    <div className="flex items-center space-x-1">
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setIsViewModalOpen(true)}
+        className="h-8 w-8 p-0"
+        title="View product"
+      >
+        <Eye className="h-4 w-4" />
+      </Button>
+
       <Button
         variant="outline"
         size="sm"
@@ -49,6 +60,6 @@ export function ProductActions({ product }: { product: TProduct }) {
         title={`Delete ${product.name}?`}
         isLoading={isDeleting}
       />
-    </>
+    </div>
   )
 }
