@@ -5,15 +5,15 @@ import Link from "next/link"
 import React, { useState } from "react"
 
 import { Button } from "@/components/ui/button"
+import { LoadingSpinner } from "@/components/ui/loading/loading"
 import { tableColumns } from "@/components/ui/table/column/column"
 import { DataTable } from "@/components/ui/table/DataTable"
 import { DataTableHeader } from "@/components/ui/table/DataTableHeader"
 import { TProduct } from "@/types/product"
 import { ProductFilters } from "./ProductFilters"
-import { LoadingSpinner } from "@/components/ui/loading/loading"
 
 export function ProductList({ products, error }: { products: TProduct[]; error?: string }) {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading] = useState(false)
   // for filtered products
   const [filteredProducts, setFilteredProducts] = useState(products)
 
