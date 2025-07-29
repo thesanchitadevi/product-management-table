@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { Suspense } from "react"
+import { Products } from "@/components/modules/Product"
 import { LoadingSpinner } from "@/components/ui/loading/loading"
-import { Products } from "./(products)/page"
 
 export const metadata: Metadata = {
   title: "Product Table",

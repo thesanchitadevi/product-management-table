@@ -1,5 +1,5 @@
-import { ProductList } from "@/components/modules/Product/ProductList"
 import { getAllProducts } from "@/lib/services/product"
+import { ProductList } from "./ProductList"
 
 export async function Products() {
   const products = await getAllProducts()
