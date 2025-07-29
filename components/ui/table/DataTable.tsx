@@ -74,7 +74,7 @@ export function DataTable<TData, TValue>({
       },
     },
     getRowId: (row: any) => {
-      return row.id ? String(row.id) : `fallback-${Math.random().toString(36).substr(2, 9)}`
+      return row.id
     },
   })
 
