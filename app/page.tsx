@@ -1,19 +1,25 @@
 import { Metadata } from "next"
-import { ProductList } from "@/components/modules/Product/ProductList"
-import { getAllProducts } from "./api/objects/route"
+import { Suspense } from "react"
+import { LoadingSpinner } from "@/components/ui/loading/loading"
+import { Products } from "./(products)/page"
 
 export const metadata: Metadata = {
   title: "Product Table",
 }
 
 export default async function Home() {
-  const products = await getAllProducts()
-  console.log("Data fetched:", products)
-
   return (
     <>
       <section className="bg-white dark:bg-gray-900">
-        <ProductList products={products} />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center p-4">
+              <LoadingSpinner className="h-12 w-12" />
+            </div>
+          }
+        >
+          <Products />
+        </Suspense>
       </section>
     </>
   )

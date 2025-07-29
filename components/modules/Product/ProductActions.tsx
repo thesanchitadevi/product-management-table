@@ -3,9 +3,9 @@
 import { Trash2 } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
-import { deleteProduct } from "@/app/api/objects/route"
 import { DeleteConfirmModal } from "@/components/modals/DeleteConfirmModal"
 import { Button } from "@/components/ui/button"
+import { deleteProduct } from "@/lib/services/product"
 import { TProduct } from "@/types/product"
 
 export function ProductActions({ product }: { product: TProduct }) {
