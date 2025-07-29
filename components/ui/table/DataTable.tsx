@@ -16,15 +16,23 @@ import React, { useState } from "react"
 import { TablePagination } from "./TablePagination"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"
 import { Button } from "../button"
+import { LoadingSpinner } from "../loading/loading"
 
 interface ITableData<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   pageSize?: number
   className?: string
+  isLoading?: boolean
 }
 
-export function DataTable<TData, TValue>({ data, columns, pageSize = 10, className = "" }: ITableData<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  data,
+  columns,
+  pageSize = 10,
+  className = "",
+  isLoading = false,
+}: ITableData<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
@@ -76,7 +84,13 @@ export function DataTable<TData, TValue>({ data, columns, pageSize = 10, classNa
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {isLoading ? (
+              <TableRow>
+                <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
+                  <LoadingSpinner />
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell) => (
@@ -87,7 +101,7 @@ export function DataTable<TData, TValue>({ data, columns, pageSize = 10, classNa
             ) : (
               <TableRow>
                 <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
-                  No results.
+                  {data.length === 0 ? "No data available" : "No matching records found"}
                 </TableCell>
               </TableRow>
             )}

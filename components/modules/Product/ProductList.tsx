@@ -3,20 +3,31 @@
 import { Plus } from "lucide-react"
 import Link from "next/link"
 import React, { useState } from "react"
+
 import { Button } from "@/components/ui/button"
 import { tableColumns } from "@/components/ui/table/column/column"
 import { DataTable } from "@/components/ui/table/DataTable"
 import { DataTableHeader } from "@/components/ui/table/DataTableHeader"
 import { TProduct } from "@/types/product"
 import { ProductFilters } from "./ProductFilters"
+import { LoadingSpinner } from "@/components/ui/loading/loading"
 
-const ProductList = ({ products, error }: { products: TProduct[]; error?: string }) => {
+export function ProductList({ products, error }: { products: TProduct[]; error?: string }) {
+  const [isLoading, setIsLoading] = useState(false)
   // for filtered products
   const [filteredProducts, setFilteredProducts] = useState(products)
 
   //error handling
   if (error) {
     return <div className="text-center text-red-500">Error: {error}</div>
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center p-4">
+        <LoadingSpinner />
+      </div>
+    )
   }
 
   return (
@@ -42,9 +53,7 @@ const ProductList = ({ products, error }: { products: TProduct[]; error?: string
         )}
       </div>
       {/* Data Table Section */}
-      <DataTable columns={tableColumns} data={filteredProducts} pageSize={10} />
+      <DataTable columns={tableColumns} data={filteredProducts} pageSize={10} isLoading={isLoading} />
     </main>
   )
 }
-
-export default ProductList

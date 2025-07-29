@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import ProductList from "@/components/modules/Product/ProductList"
+import { ProductList } from "@/components/modules/Product/ProductList"
 import { getAllProducts } from "./api/objects/route"
 
 export const metadata: Metadata = {

@@ -40,6 +40,7 @@ export function EditableCell({ value: initialValue, onUpdate, className = "" }: 
     <div className={`flex min-h-10 items-center ${className}`} onClick={() => setIsEditing(true)}>
       {isEditing ? (
         <Input
+          ref={inputRef}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onBlur={saveChanges}
