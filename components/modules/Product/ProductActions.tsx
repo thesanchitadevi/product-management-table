@@ -1,9 +1,10 @@
 "use client"
 
-import { Eye, Pen, Trash2 } from "lucide-react"
+import { Eye, Trash2 } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 import { DeleteConfirmModal } from "@/components/modals/DeleteConfirmModal"
+import { ViewProductModal } from "@/components/modals/ViewProductModal"
 import { Button } from "@/components/ui/button"
 import { deleteProduct } from "@/lib/services/product"
 import { TProduct } from "@/types/product"
@@ -60,6 +61,8 @@ export function ProductActions({ product }: { product: TProduct }) {
         title={`Delete ${product.name}?`}
         isLoading={isDeleting}
       />
+
+      <ViewProductModal isOpen={isViewModalOpen} onClose={() => setIsViewModalOpen(false)} product={product} />
     </div>
   )
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type TProductData = {
   Color?: string | null
   Capacity?: string | null
@@ -15,7 +16,7 @@ type TProductData = {
 export type TProduct = {
   id: string
   name: string
-  data: TProductData | null
+  data: TProductData | null | undefined
 }
 
 export type TProductFilters = {

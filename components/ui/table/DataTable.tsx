@@ -22,7 +22,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "../../ui/dropdown-menu"
-import { Input } from "../../ui/input"
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"
 import { Button } from "../button"
 import { LoadingSpinner } from "../loading/loading"

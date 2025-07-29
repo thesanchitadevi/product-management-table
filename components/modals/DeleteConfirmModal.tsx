@@ -11,7 +11,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 
-interface DeleteConfirmModalProps {
+interface IDeleteConfirmModal {
   isOpen: boolean
   onClose: () => void
   onConfirm: () => void
@@ -27,7 +27,7 @@ export function DeleteConfirmModal({
   title,
   description = "This action cannot be undone.",
   isLoading = false,
-}: DeleteConfirmModalProps) {
+}: IDeleteConfirmModal) {
   return (
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent>
