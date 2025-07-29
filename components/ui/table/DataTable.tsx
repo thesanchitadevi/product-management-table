@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import {
@@ -27,8 +28,8 @@ interface ITableData<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({
-  data,
   columns,
+  data,
   pageSize = 10,
   className = "",
   isLoading = false,
@@ -37,8 +38,8 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
   const table = useReactTable<TData>({
-    data,
     columns,
+    data,
     state: {
       sorting,
       columnFilters,
@@ -54,7 +55,19 @@ export function DataTable<TData, TValue>({
         pageSize,
       },
     },
+
+    getRowId: (row: any) => {
+      return row.id ? String(row.id) : `fallback-${Math.random().toString(36).substr(2, 9)}`
+    },
   })
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <div>Loading...</div>
+      </div>
+    )
+  }
 
   return (
     <main className={`flex flex-col space-y-4 ${className}`}>
@@ -91,13 +104,17 @@ export function DataTable<TData, TValue>({
                 </TableCell>
               </TableRow>
             ) : table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
-                  ))}
-                </TableRow>
-              ))
+              table.getRowModel().rows.map((row) => {
+                return (
+                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                      )
+                    })}
+                  </TableRow>
+                )
+              })
             ) : (
               <TableRow>
                 <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">

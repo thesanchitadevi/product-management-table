@@ -50,7 +50,7 @@ export function ProductFilters({
         {/* Name Search */}
         <div className="min-w-[200px] flex-1">
           <Input
-            placeholder="Search products..."
+            placeholder="Search by product name..."
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full"
