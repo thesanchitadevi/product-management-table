@@ -14,7 +14,7 @@ export function EditableCell({ value: initialValue, onUpdate, className = "" }: 
   const [isEditing, setIsEditing] = useState(false) // editing state
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Focus input
+  // Focus input if editing
   useEffect(() => {
     if (isEditing && inputRef.current) {
       inputRef.current.focus()
@@ -31,9 +31,10 @@ export function EditableCell({ value: initialValue, onUpdate, className = "" }: 
     setIsEditing(false)
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") saveChanges() // Save on Enter
-    if (e.key === "Escape") cancelEdit() // Cancel on Escape
+  // for interaction with keyboard
+  const handleKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") saveChanges() // Save on Enter to confirm
+    if (e.key === "Escape") cancelEdit() // Cancel on Escape to revert changes
   }
 
   return (
@@ -44,7 +45,7 @@ export function EditableCell({ value: initialValue, onUpdate, className = "" }: 
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onBlur={saveChanges}
-          onKeyDown={handleKeyDown}
+          onKeyDown={handleKey}
           className="h-8 w-full"
         />
       ) : (
