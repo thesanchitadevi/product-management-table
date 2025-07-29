@@ -15,13 +15,13 @@ import {
 } from "@tanstack/react-table"
 import { ArrowUpDown, ChevronDown, Eye } from "lucide-react"
 import React, { useState } from "react"
-import { TablePagination } from "./TablePagination"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "../../ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
+import { TablePagination } from "./TablePagination"
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"
 import { Button } from "../button"

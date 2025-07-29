@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 type TProductData = {
   Color?: string | null
   Capacity?: string | null
