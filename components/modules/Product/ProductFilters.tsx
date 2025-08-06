@@ -59,11 +59,12 @@ export function ProductFilters({
 
         {/* Color Select */}
         <div className="min-w-[180px] flex-1">
-          <Select value={color ?? ""} onValueChange={(val) => setColor(val || null)}>
-            <SelectTrigger className="w-full" ref={null}>
+          <Select value={color || ""} onValueChange={(val) => setColor(val === "all" ? null : val)}>
+            <SelectTrigger className="w-full">
               <SelectValue placeholder="All colors" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="all">All colors</SelectItem>
               {colors.map((color) => (
                 <SelectItem key={color} value={color}>
                   {color}
