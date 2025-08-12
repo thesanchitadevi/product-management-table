@@ -31,7 +31,7 @@ export function ProductList({ products, error }: { products: TProduct[]; error?:
   }
 
   return (
-    <main className="container mx-auto space-y-6 p-4">
+    <main className="container mx-auto">
       {/* Header Section */}
       <DataTableHeader
         title="Product Table"
